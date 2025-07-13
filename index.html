@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Student Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes slideFade {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-register {
+            animation: slideFade 0.8s ease-in-out both;
+        }
+
+        /* Mobile adjustment: remove full screen height on small devices */
+        @media (max-width: 640px) {
+            body {
+                min-height: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-purple-50 text-gray-800">
+
+    <div class="max-w-5xl mx-auto py-10 px-6">
+        <h1 class="text-4xl font-bold text-center text-purple-800 mb-10 drop-shadow">🎓 Student Registration Form</h1>
+
+        <!-- FORM CONTAINER -->
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-purple-300 animate-register">
+            <table class="w-full mb-6">
+                <tbody>
+                    <tr>
+                        <td class="p-3 font-semibold text-purple-800">Name</td>
+                        <td><input
+                                class="name w-full p-2 border border-purple-300 rounded  focus:ring-2 focus:ring-purple-400  hover:shadow-md"
+                                type="text" placeholder="Enter your name"></td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 font-semibold text-purple-800">Age</td>
+                        <td><input
+                                class="age w-full p-2 border border-purple-300 rounded focus:ring-2 focus:ring-purple-400 hover:shadow-md"
+                                type="text" placeholder="Enter your age"></td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 font-semibold text-purple-800">Gender</td>
+                        <td class="text-gray-700">
+                            <label class="mr-6"><input type="radio" name="gender" /> Male</label>
+                            <label><input type="radio" name="gender" value="Female" /> Female</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 font-semibold text-purple-800">Course</td>
+                        <td>
+                            <select
+                                class="course w-full p-2 border border-purple-300 rounded focus:ring-2 focus:ring-purple-400 bg-white hover:shadow-md">
+                                <option value="" disabled selected hidden>Select Course</option>
+                                <option>Computer Science</option>
+                                <option>AI & Data Science</option>
+                                <option>EEE</option>
+                                <option>ECE</option>
+                                <option>Fashion Tech</option>
+                                <option>Mechanical</option>
+                                <option>Civil</option>
+                                <option>Biotech</option>
+                                <option>IT</option>
+                                <option>Environmental Science</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 font-semibold text-purple-800">Phone</td>
+                        <td><input
+                                class="phone w-full p-2 border border-purple-300 rounded focus:ring-2 focus:ring-purple-400 hover:shadow-md"
+                                type="text" placeholder="Enter your number"></td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 font-semibold text-purple-800">Email</td>
+                        <td><input
+                                class="email w-full p-2 border border-purple-300 rounded focus:ring-2 focus:ring-purple-400 hover:shadow-md"
+                                type="text" placeholder="Enter your email"></td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 font-semibold text-purple-800">Date</td>
+                        <td><input
+                                class="date w-full p-2 border border-purple-300 rounded focus:ring-2 focus:ring-purple-400 hover:shadow-md"
+                                type="date"></td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 font-semibold text-purple-800">Address</td>
+                        <td><textarea
+                                class="address w-full p-2 border border-purple-300 rounded focus:ring-2 focus:ring-purple-400 hover:shadow-md"
+                                rows="3" placeholder="Enter your address"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"
+                            class="submit p-3 text-center bg-purple-600 text-white font-semibold rounded hover:bg-purple-700 cursor-pointer shadow-md transition">
+                            Save</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- SUBMITTED DATA SECTION -->
+            <h2 class="text-2xl font-bold text-center text-purple-700 mb-4 mt-8">📋 Submitted Data</h2>
+
+            <div class="overflow-y-auto max-h-64 border border-purple-300 rounded-lg shadow-inner bg-white">
+                <table class="table-auto w-full text-sm text-center">
+                    <thead class="bg-purple-200 text-purple-900 sticky top-0 z-10">
+                        <tr>
+                            <th class="px-2 py-2 border">Name</th>
+                            <th class="px-2 py-2 border">Age</th>
+                            <th class="px-2 py-2 border">Gender</th>
+                            <th class="px-2 py-2 border">Course</th>
+                            <th class="px-2 py-2 border">Phone</th>
+                            <th class="px-2 py-2 border">Email</th>
+                            <th class="px-2 py-2 border">Date</th>
+                            <th class="px-2 py-2 border">Address</th>
+                            <th class="px-2 py-2 border">Delete</th>
+                            <th class="px-2 py-2 border">Update</th>
+                        </tr>
+                    </thead>
+                    <tbody class="update">
+                        <!-- JavaScript will insert rows -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        const nameInput = document.querySelector(".name");
+        const ageInput = document.querySelector(".age");
+        const courseInput = document.querySelector(".course");
+        const phoneInput = document.querySelector(".phone");
+        const emailInput = document.querySelector(".email");
+        const dateInput = document.querySelector(".date");
+        const addressInput = document.querySelector(".address");
+        const saveButton = document.querySelector(".submit");
+        const updateTable = document.querySelector(".update");
+
+        let editingRow = null;
+
+        function getSelectedGender() {
+            const genders = document.getElementsByName("gender");
+            for (let gender of genders) {
+                if (gender.checked) return gender.value;
+            }
+            return "";
+        }
+
+        function setSelectedGender(value) {
+            const genders = document.getElementsByName("gender");
+            for (let gender of genders) {
+                gender.checked = gender.value === value;
+            }
+        }
+
+        saveButton.addEventListener("click", function () {
+            // VALIDATIONS
+            const nameRegex = /^[A-Za-z ]+$/;
+            const ageRegex = /^[0-9]+$/;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (
+                nameInput.value.trim() === "" ||
+                ageInput.value.trim() === "" ||
+                phoneInput.value.trim() === "" ||
+                emailInput.value.trim() === "" ||
+                dateInput.value === "" ||
+                addressInput.value.trim() === "" ||
+                courseInput.value === ""
+            ) {
+                alert("Please fill out all fields before saving.");
+                return;
+            }
+
+            if (!nameRegex.test(nameInput.value)) {
+                alert("Name must contain only letters.");
+                return;
+            }
+
+            if (!ageRegex.test(ageInput.value)) {
+                alert("Age must contain only numbers.");
+                return;
+            }
+
+            if (!emailRegex.test(emailInput.value)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+
+            const genderValue = getSelectedGender();
+
+            if (saveButton.textContent === "Update" && editingRow) {
+                editingRow.cells[0].textContent = nameInput.value;
+                editingRow.cells[1].textContent = ageInput.value;
+                editingRow.cells[2].textContent = genderValue;
+                editingRow.cells[3].textContent = courseInput.value;
+                editingRow.cells[4].textContent = phoneInput.value;
+                editingRow.cells[5].textContent = emailInput.value;
+                editingRow.cells[6].textContent = dateInput.value;
+                editingRow.cells[7].textContent = addressInput.value;
+
+                saveButton.textContent = "Save";
+                editingRow = null;
+            } else {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                <td class="border p-2">${nameInput.value}</td>
+                <td class="border p-2">${ageInput.value}</td>
+                <td class="border p-2">${genderValue}</td>
+                <td class="border p-2">${courseInput.value}</td>
+                <td class="border p-2">${phoneInput.value}</td>
+                <td class="border p-2">${emailInput.value}</td>
+                <td class="border p-2">${dateInput.value}</td>
+                <td class="border p-2">${addressInput.value}</td>
+                <td class="border p-2"><button onclick="deleteItem(event)" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button></td>
+                <td class="border p-2"><button onclick="editItem(event)" class="bg-yellow-400 text-white px-2 py-1 rounded">Update</button></td>
+            `;
+                updateTable.appendChild(row);
+            }
+
+            // CLEAR inputs
+            nameInput.value = "";
+            ageInput.value = "";
+            courseInput.selectedIndex = 0;
+            phoneInput.value = "";
+            emailInput.value = "";
+            dateInput.value = "";
+            addressInput.value = "";
+            setSelectedGender("Male");
+        });
+
+        function deleteItem(event) {
+            const row = event.target.closest("tr");
+            row.remove();
+
+            if (editingRow === row) {
+                editingRow = null;
+                saveButton.textContent = "Save";
+                nameInput.value = "";
+                ageInput.value = "";
+                courseInput.selectedIndex = 0;
+                phoneInput.value = "";
+                emailInput.value = "";
+                dateInput.value = "";
+                addressInput.value = "";
+                setSelectedGender("Male");
+            }
+        }
+
+        function editItem(event) {
+            editingRow = event.target.closest("tr");
+            const cells = editingRow.querySelectorAll("td");
+
+            nameInput.value = cells[0].textContent;
+            ageInput.value = cells[1].textContent;
+            courseInput.value = cells[3].textContent;
+            phoneInput.value = cells[4].textContent;
+            emailInput.value = cells[5].textContent;
+            dateInput.value = cells[6].textContent;
+            addressInput.value = cells[7].textContent;
+
+            saveButton.textContent = "Update";
+        }
+    </script>
+</body>
+
+</html>
